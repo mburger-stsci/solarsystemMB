@@ -108,6 +108,3 @@ def initialize_SolarSystem_db():
                 id = int(line2[0].strip())
                 object = line2[1].strip()
                 cur.execute(f"INSERT into naifids values ({id}, '{object}')")
-
-if __name__ == '__main__':
-    initialize_SolarSystem_db()
