@@ -1,5 +1,5 @@
-Solar system functions ond objects for nexoclom and general use
----------------------------------------------------------------
+Solar System functions for nexoclom and general use
+-------------------------------------------------
 
 .. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
     :target: http://www.astropy.org

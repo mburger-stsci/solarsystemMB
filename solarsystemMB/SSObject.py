@@ -8,7 +8,7 @@ class SSObject:
 #    def __new__(cls, obj):
 #        ''' Verify that valid object has been requested '''
 #
-#        with psycopg2.connect(database='thesolarsystem') as con:
+#        with psycopg2.connect(database='thesolarsystemmb') as con:
 #            cur = con.cursor()
 #
 #            # check if valid object
@@ -23,7 +23,7 @@ class SSObject:
     def __init__(self, obj):
         '''Create a SSObject'''
 
-        with psycopg2.connect(database='thesolarsystem') as con:
+        with psycopg2.connect(database='thesolarsystemmb') as con:
             cur = con.cursor()
             cur.execute('''SELECT * FROM SolarSystem
                            WHERE object = %s''', (obj.title(), ))
@@ -85,7 +85,7 @@ class SSObject:
         return(out)
 
     def get_moons(self):
-        with psycopg2.connect(database='thesolarsystem') as con:
+        with psycopg2.connect(database='thesolarsystemmb') as con:
             cur = con.cursor()
 
             query = cur.execute('''SELECT object FROM SolarSystem

@@ -1,16 +1,13 @@
-name: physicsMB
-
-channels:
-    - defaults
-
+name: solarsystemMB
 dependencies:
-    - python>=3.6
-    - astropy
-    - matplotlib
-    - numpy
-    - pip:
-      - sphinx
-      - sphinx_rtd_theme
-      - stsci_rtd_theme
-      - sphinx-astropy
-      - periodictable
+  - python=3.7
+  - numpy
+  - scipy
+  - astropy
+  - postgresql
+  - psycopg2
+  - pandas
+  - pip:
+    - periodictable
+    - mathmb
+    - stsci_rtd_theme
