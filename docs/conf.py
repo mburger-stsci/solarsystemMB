@@ -34,7 +34,7 @@ conf = ConfigParser()
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../'))
-sys.path.insert(0, os.path.abspath('atomicdataMB/'))
+sys.path.insert(0, os.path.abspath('solarsystemMB/'))
 sys.path.insert(0, os.path.abspath('exts/'))
 
 # -- General configuration ------------------------------------------------
@@ -106,7 +106,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'atomicdataMB/index'
+master_doc = 'solarsystemMB/index'
 
 # A list of warning types to suppress arbitrary warning messages. We mean to
 # override directives in astropy_helpers.sphinx.ext.autodoc_enhancements,
@@ -262,7 +262,7 @@ html_use_index = True
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'atomicdatambdoc'
+htmlhelp_basename = 'solarsystemmbdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -280,8 +280,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 # latex_documents = [
-#   ('index', 'atomicdataMB.tex', u'atomicdataMB Documentation',
-#    u'atomicdataMB', 'manual'),
+#   ('index', 'solarsystemMB.tex', u'solarsystemMB Documentation',
+#    u'solarsystemMB', 'manual'),
 # ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -309,8 +309,8 @@ latex_domain_indices = True
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'atomicdataMB', u'atomicdataMB Documentation',
-     [u'atomicdataMB'], 1)
+    ('index', 'solarsystemMB', u'solarsystemMB Documentation',
+     [u'solarsystemMB'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -323,8 +323,8 @@ man_show_urls = True
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'atomicdataMB', u'atomicdataMB Documentation',
-   u'atomicdataMB', 'atomicdataMB', 'atomicdataMB',
+  ('index', 'solarsystemMB', u'solarsystemMB Documentation',
+   u'solarsystemMB', 'solarsystemMB', 'solarsystemMB',
    'Miscellaneous'),
 ]
 
@@ -344,7 +344,7 @@ texinfo_show_urls = 'inline'
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'atomicdataMB'
+epub_title = u'solarsystemMB'
 epub_author = u'Matthew Burger'
 #epub_publisher = u'STSCI'
 #epub_copyright = u'2016 STScI'

@@ -12,8 +12,6 @@ import glob
 
 
 # Need to do better than hard code it
-path = '/Users/mburger/Work/Data/spice_kernels/Generic/'
-
 def load_kernels():
     ## Determine the path to the spice kernels
     kernels = []

@@ -7,7 +7,6 @@ For planets:
   * Sub-solar longitude and latitude in radians  -- not implemented
   * Sub-earth longitude and latitude in radians  -- not implemented
 '''
-import spiceypy as spice
 import numpy as np
 import astropy.units as u
 import astropy.constants as const

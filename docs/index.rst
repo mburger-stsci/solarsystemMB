@@ -1,35 +1,37 @@
-************
-atomicdataMB
-************
+*************
+solarsystemMB
+*************
 
-atomicdataMB provides support for the Neutral Cloud and Exospheres Model
+solarsystemMB provides support for the Neutral Cloud and Exospheres Model
 (nexoclom) and can be used as a standalone package.
 
 .. toctree::
   :maxdepth: 2
-
-  atomicmass
-  g_values
-  photolossrates
-  initialize_atomicdata
+  
+  load_kernels
+  planet_dist
+  planet_geometry
+  relative_position
+  SSObject
   LICENSE
-
 
 Installation
 ============
 
 Basic installation method:
 
->>> pip install atomicdataMB
+>>> pip install solarsystemMB
 
 * Requirements
 
   * python >= 3.6
   * A postgreSQL database server.
-
+  * numpy
+  * scipy
+  * astropy
   * psycopg2
   * pandas
-  * `periodictable <https://periodictable.readthedocs.io/en/latest/index.html>`_
+  * spiceypy
 
 PostgreSQL can be installed using conda:
 
