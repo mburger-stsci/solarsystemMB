@@ -34,7 +34,7 @@ conf = ConfigParser()
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../'))
-sys.path.insert(0, os.path.abspath('solarsystemMB/'))
+#sys.path.insert(0, os.path.abspath('solarsystemMB/'))
 sys.path.insert(0, os.path.abspath('exts/'))
 
 # -- General configuration ------------------------------------------------
@@ -106,7 +106,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'solarsystemMB/index'
+master_doc = 'index'
 
 # A list of warning types to suppress arbitrary warning messages. We mean to
 # override directives in astropy_helpers.sphinx.ext.autodoc_enhancements,
