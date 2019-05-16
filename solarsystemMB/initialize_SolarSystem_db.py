@@ -26,6 +26,14 @@ def initialize_SolarSystem_db(database='thesolarsystemmb', force=False):
 
     **Output**
     No output."""
+    # Verify database is running
+    status = os.popen('pg_ctl status').read()
+    if 'no server running' in status:
+        os.system('pg_ctl -D $HOME/.postgres/main/ -l '
+                  '$HOME/.postgres/logfile start')
+    else:
+        pass
+
     # Create database if necessary
     with psycopg2.connect(host='localhost', database='postgres') as con:
         con.autocommit = True
