@@ -7,6 +7,52 @@ import psycopg2
 from astropy.io import ascii
 
 
+def database_connect(database=None, port=None, return_con=True):
+    """Wrapper for psycopg2.connect() that determines which database and port to use.
+
+    :param database: Default = None to use value from config file
+    :param port: Default = None to use value from config file
+    :param return_con: False to return database name and port instead of connection
+    :return: Database connection with autocommit = True unless return_con = False
+    """
+    configfile = os.path.join(os.environ['HOME'], '.nexoclom')
+    config = {}
+    if os.path.isfile(configfile):
+        for line in open(configfile, 'r').readlines():
+            key, value = line.split('=')
+            config[key.strip()] = value.strip()
+
+        if (database is None) and ('database' in config):
+            database = config['database']
+        else:
+            pass
+
+        if (port is None) and ('port' in config):
+            port = int(config['port'])
+        else:
+            pass
+    else:
+        pass
+
+    if database is None:
+        database = 'thesolarsystemmb'
+    else:
+        pass
+
+    if port is None:
+        port = 5432
+    else:
+        pass
+
+    if return_con:
+        con = psycopg2.connect(database=database, port=port)
+        con.autocommit = True
+
+        return con
+    else:
+        return database, port
+
+
 def initialize_SolarSystem_db(database='thesolarsystemmb', force=False):
     """Add Solar System information to the database
     Currently the solar system data is in a hand-made table, but it would
@@ -26,17 +72,19 @@ def initialize_SolarSystem_db(database='thesolarsystemmb', force=False):
 
     **Output**
     No output."""
-    # Verify database is running
+    # Get database name and port
+    database, port = database_connect(return_con=False)
+
+    # Verify postgres is running
     status = os.popen('pg_ctl status').read()
     if 'no server running' in status:
-        os.system('pg_ctl -D $HOME/.postgres/main/ -l '
-                  '$HOME/.postgres/logfile start')
+        os.system(f'pg_ctl -D $HOME/.postgres/main/ -p {port}'
+                  '-l $HOME/.postgres/logfile start')
     else:
         pass
 
     # Create database if necessary
-    with psycopg2.connect(host='localhost', database='postgres') as con:
-        con.autocommit = True
+    with database_connect(database='postgres') as con:
         cur = con.cursor()
         cur.execute('select datname from pg_database')
         dbs = [r[0] for r in cur.fetchall()]
@@ -48,7 +96,7 @@ def initialize_SolarSystem_db(database='thesolarsystemmb', force=False):
             pass
 
     # Populate the database tables
-    with psycopg2.connect(host='localhost', database=database) as con:
+    with database_connect() as con:
         # Drop the old table (if necessary) and create a new one
         con.autocommit = True
         cur = con.cursor()

@@ -16,16 +16,15 @@ Information stored:
 Values are astropy units quantities when appropriate.
 
 """
-import os
-import psycopg2
 from astropy import constants as const
 from astropy import units as u
+from .initialize_SolarSystem_db import database_connect
 
 
 class SSObject:
     """Creates Solar System object."""
     def __init__(self, obj):
-        with psycopg2.connect(database='thesolarsystemmb') as con:
+        with database_connect() as con:
             cur = con.cursor()
             cur.execute('''SELECT * FROM SolarSystem
                            WHERE object = %s''', (obj.title(), ))
@@ -78,7 +77,7 @@ class SSObject:
         return(out)
 
     def get_moons(self):
-        with psycopg2.connect(database='thesolarsystemmb') as con:
+        with database_connect() as con:
             cur = con.cursor()
             query = cur.execute('''SELECT object FROM SolarSystem
                                    WHERE orbits = %s''', (self.object, ))
