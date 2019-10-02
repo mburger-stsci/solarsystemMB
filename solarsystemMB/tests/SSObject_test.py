@@ -1,6 +1,6 @@
 import numpy as np
 import astropy.units as u
-from solarsystem import SSObject, planet_dist
+from solarsystemMB import SSObject, planet_dist
 from mymath import minmaxmean
 import matplotlib.pyplot as plt
 

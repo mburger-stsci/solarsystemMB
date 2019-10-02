@@ -1,6 +1,6 @@
 import astropy.units as u
 from astropy.time import Time
-from solarsystem import relative_position
+from solarsystemMB import relative_position
 
 
 # pos, vel = relative_position('Earth', 'Sun', Time.now())

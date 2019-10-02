@@ -1,5 +1,4 @@
-'''Determine distance and radial velocity relative to Sun.'''
-import os
+"""Determine distance and radial velocity relative to Sun."""
 import numpy as np
 from scipy.misc import derivative
 import astropy.units as u
@@ -12,15 +11,11 @@ def planet_dist(planet_, taa=None, time=None):
     elif isinstance(planet_, SSObject):
         planet = planet_
     else:
-        assert 0, 'Must give a SSObject or a object name.'
-
-    if planet is None:
-        assert 0, 'Invalid object name'
-    else:
-        pass
+        raise TypeError('solarsystemMB.planet_dist',
+                        'Must give a SSObject or a object name.')
 
     if time is not None:
-        ## Need to do this
+        # Need to do this
         assert 0, 'This is not verified'
         import spiceypy as spice
         from .load_kernels import load_kernels
@@ -41,32 +36,27 @@ def planet_dist(planet_, taa=None, time=None):
         eps = planet.e
 
         # make sure taa is in radians. If not a quantity, assume it is.
-        try:
-            if taa.unit == u.deg:
-                taa_ = taa.to(u.rad).value
-            elif taa.unit == u.rad:
-                taa_ = taa.value
-            else:
-                pass
-        except:
+        if isinstance(taa, type(1*u.s)):
+            taa_ = taa.to(u.rad).value
+        else:
             taa_ = taa
 
         if eps > 0:
-            ## determine r
+            # determine r
             r = a * (1-eps**2)/(1+eps*np.cos(taa_))
             P = np.sqrt(a**3/(1*u.au)**3) * u.yr
 
-            ## determine v_r = dr/dt
+            # determine v_r = dr/dt
             def trueanom(time):
-                ## Mean anomally
+                # Mean anomally
                 M = 2*np.pi*time/P.value
 
-                ## Determine eccentric anomaly from M = E-e*sin(E)
+                # Determine eccentric anomaly from M = E-e*sin(E)
                 EEtemp = np.linspace(0, 2*np.pi, 1001)
                 mm = EEtemp - eps*np.sin(EEtemp)
                 EE = np.array([np.interp(x, mm, EEtemp) for x in M])
 
-                ## True anomaly
+                # True anomaly
                 phi = (2*np.arctan(np.sqrt((1+eps)/(1-eps)) * np.tan(EE/2)) +
                        (2*np.pi)) % (2*np.pi)
                 return phi
@@ -89,6 +79,4 @@ def planet_dist(planet_, taa=None, time=None):
         print('Neither a time nor a true anomaly was given.')
         return None
 
-    #print('Distance from Sun: %.2f %s' % (r.value, r.unit))
-    #print('Radial velocity relative to sun: %.2f %s' % (v_r.value, v_r.unit))
     return r, v_r
