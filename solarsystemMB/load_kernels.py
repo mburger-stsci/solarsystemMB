@@ -10,6 +10,7 @@ import spiceypy as spice
 import os
 import glob
 
+path = '/Users/mburger/Work/Data/spice_kernels/Generic'
 
 # Need to do better than hard code it
 def load_kernels():
